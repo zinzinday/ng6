@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {LayoutService} from './providers/services/layout.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  layoutIndex = 0;
+  constructor(public layout: LayoutService) {
+  }
 }

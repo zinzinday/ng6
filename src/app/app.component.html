@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<div [ngSwitch]="layout.index">
+  <ng-container *ngSwitchCase="1">
+    <app-authorization></app-authorization>
+  </ng-container>
+  <ng-container *ngSwitchDefault>
+    <app-dashboard></app-dashboard>
+  </ng-container>
+</div>

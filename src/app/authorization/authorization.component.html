@@ -1,0 +1,8 @@
+<div class="display-block full-screen-width full-screen-height">
+  <div class="display-flex full-width full-height"
+       [ngClass]="{'justify-content-center align-content-center align-items-center': !layout.isHandset}">
+    <div [ngClass]="{'padding-1': layout.isHandset, 'box': !layout.isHandset}">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

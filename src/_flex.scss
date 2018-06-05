@@ -1,0 +1,103 @@
+$display: (
+  inline,
+  block,
+  contents,
+  flex,
+  grid,
+  inline-block,
+  inline-flex,
+  inline-grid,
+  inline-table,
+  list-item,
+  run-in,
+  table,
+  table-caption,
+  table-column-group,
+  table-header-group,
+  table-footer-group,
+  table-row-group,
+  table-cell,
+  table-column,
+  table-row,
+  none,
+  initial,
+  inherit
+);
+$flex: (
+  direction:(row, row-reverse, column, column-reverse, initial),
+  wrap: (nowrap, wrap, wrap-reverse, initial),
+  basis:(auto, initial),
+  grow: (1, 2, 3, 4, 5, 6, 7, 8, 9, initial),
+  shrink: (1, 2, 3, 4, 5, 6, 7, 8, 9, initial),
+);
+
+$justify-content: (flex-start, flex-end, center, space-between, space-around, initial);
+$align: (
+  content: (stretch, center, flex-start, flex-end, space-between, space-around, initial),
+  items: (stretch, center, flex-start, flex-end, baseline, initial),
+  self: (auto, stretch, center, flex-start, flex-end, baseline, initial)
+);
+
+$sizes: (1, 2, 3, 4, 5, 6, 7, 8, 9);
+$positions: (top, right, bottom, left);
+
+@each $state in $display {
+  .display-#{$state} {
+    display: $state;
+  }
+}
+
+@each $type, $values in $flex {
+  @each $value in $values {
+    .flex-#{$type}-#{$value} {
+      flex-#{$type}: $value;
+    }
+  }
+}
+
+@each $justify in $justify-content {
+  .justify-content-#{$justify} {
+    justify-content: $justify;
+  }
+}
+
+@each $position, $values in $align {
+  @each $value in $values {
+    .align-#{$position}-#{$value} {
+      align-#{$position}: $value;
+    }
+  }
+}
+
+@each $size in $sizes {
+  .padding-#{$size} {
+    padding: $size* 1rem;
+  }
+  .margin-#{$size} {
+    margin: $size* 1rem;
+  }
+  @each $position in $positions {
+    .padding-#{$position}-#{$size} {
+      padding-#{$position}: $size * 1rem;
+    }
+    .margin-#{$position}-#{$size} {
+      margin-#{$position}: $size * 1rem;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.full-screen-width {
+  width: 100vw;
+}
+
+.full-screen-height {
+  height: 100vh;
+}

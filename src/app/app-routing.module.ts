@@ -1,11 +1,15 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LayoutComponent} from './authorization/layout/layout.component';
+import {LoginComponent} from './authorization/login/login.component';
+import {RegisterComponent} from './authorization/register/register.component';
+import {SettingsComponent} from './dashboard/settings/settings.component';
 
 const routes: Routes = [
-  {path: '', loadChildren: './authorization/authorization.module#AuthorizationModule'},
-  {path: 'helpdesk', loadChildren: './help-desk/help-desk.module#HelpDeskModule'},
-  {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'settings', component: SettingsComponent},
+  {path: 'finances', component: SettingsComponent},
 ];
 
 @NgModule({
