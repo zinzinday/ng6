@@ -26,7 +26,7 @@ export class RestService {
   }
 
   protected requestAuth<T>(method: string, path: string, options?: any): Observable<T | null> {
-    return this.auth.credential.pipe(mergeMap((credential: any) => {
+    const obs = this.auth.credential.pipe(mergeMap((credential: any) => {
       if (credential) {
         options = options ? options : {};
         if (!options.hasOwnProperty('headers')) {
@@ -35,11 +35,12 @@ export class RestService {
         options.headers = Object.assign(options.headers, {
           Authorization: credential.type + ' ' + credential.accessToken
         });
-        return this.pipe<T>(this.http.request(method, this.url(path), options));
+        return this.http.request(method, this.url(path), options);
       } else {
         return of(null);
       }
     }));
+    return this.pipe<T>(obs);
   }
 
   login(value: any): Observable<Credential | null> {
