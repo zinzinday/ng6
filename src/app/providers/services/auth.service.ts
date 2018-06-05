@@ -2,12 +2,8 @@ import {Injectable} from '@angular/core';
 import {IndexDbService} from '../storages/index-db.service';
 import {Observable, of} from 'rxjs';
 import {Profile} from '../../models/profile';
+import {Credential} from '../../models/credential';
 import {map} from 'rxjs/internal/operators';
-
-interface Credential {
-  type: string;
-  accessToken: string;
-}
 
 @Injectable({
   providedIn: 'root'

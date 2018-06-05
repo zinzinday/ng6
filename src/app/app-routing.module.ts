@@ -1,8 +1,9 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {LayoutComponent} from './authorization/layout/layout.component';
 
 const routes: Routes = [
-  {path: 'authorization', loadChildren: './authorization/authorization.module#AuthorizationModule'},
+  {path: '', loadChildren: './authorization/authorization.module#AuthorizationModule'},
   {path: 'helpdesk', loadChildren: './help-desk/help-desk.module#HelpDeskModule'},
   {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
 ];
