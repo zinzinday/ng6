@@ -7,7 +7,7 @@ import {first, map, mergeMap} from 'rxjs/internal/operators';
 })
 export class IndexDbService {
 
-  protected database: ReplaySubject<IDBDatabase>;
+  protected database: ReplaySubject<IDBDatabase>= new ReplaySubject<IDBDatabase>();
   private dbName = 'ngIndexDB';
   private storageName = 'ngObject';
   private dataPath = 'dbPath';

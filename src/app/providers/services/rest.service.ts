@@ -5,6 +5,9 @@ import {Observable, of} from 'rxjs';
 import {map, mergeMap} from 'rxjs/internal/operators';
 import {Credential} from '../../models/credential';
 import {Profile} from '../../models/profile';
+import {BodyResponse} from '../../models/body-response';
+import {AbstractControl, FormGroup} from '@angular/forms';
+import {EntryError} from '../../models/entry-error';
 
 @Injectable({
   providedIn: 'root'
@@ -43,8 +46,8 @@ export class RestService {
     return this.pipe<T>(obs);
   }
 
-  login(value: any): Observable<Credential | null> {
-    return this.pipe<Credential>(this.http.post(this.url('user/authorize'), value));
+  login(value: any): Observable<BodyResponse | null> {
+    return this.pipe<BodyResponse>(this.http.post(this.url('user/authorize'), value));
   }
 
   me(): Observable<Profile | null> {
@@ -53,5 +56,23 @@ export class RestService {
 
   updateMe(value: any): Observable<Profile | null> {
     return this.requestAuth<Profile>('put', 'user', {body: value});
+  }
+
+  setErrors(form: FormGroup, errors: EntryError[] | any) {
+
+    if (errors && errors.length) {
+      for (let err of errors) {
+        let control: AbstractControl;
+        if (err.group) {
+          control = form.get(err.group).get(err.field);
+        } else {
+          control = form.get(err.field);
+        }
+        if (control) {
+          control.setErrors({restful: err.message});
+        }
+      }
+    }
+
   }
 }

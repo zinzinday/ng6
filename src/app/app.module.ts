@@ -18,36 +18,46 @@ import {
   MatButtonModule,
   MatSidenavModule,
   MatIconModule,
-  MatListModule
+  MatListModule, MatSnackBarModule, MatCardModule, MatMenuModule, MatProgressBarModule, MatFormFieldModule, MatInputModule
 } from '@angular/material';
-import {ActivatedRouteSnapshot} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AuthorizationComponent,
+    LoginComponent,
     RegisterComponent,
     DashboardComponent,
     SettingsComponent,
     SettingProfileComponent,
     SettingReferenceComponent,
-    SettingSecurityComponent
+    SettingSecurityComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule,
+    MatCardModule,
+    MatMenuModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

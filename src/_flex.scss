@@ -43,7 +43,7 @@ $positions: (top, right, bottom, left);
 
 @each $state in $display {
   .display-#{$state} {
-    display: $state;
+    display: $state !important;
   }
 }
 

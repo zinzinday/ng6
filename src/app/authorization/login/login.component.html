@@ -1,3 +1,39 @@
-<p>
-  login works!
-</p>
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <mat-progress-bar mode="indeterminate" *ngIf="inProgress"></mat-progress-bar>
+  <mat-card [ngClass]="{'mat-elevation-z0': layout.isHandset}">
+    <mat-card-content>
+      <mat-card-title class="display-flex">
+        <span class="flex-grow-1" style="line-height: 40px">Sign In</span>
+        <button mat-icon-button type="button" [matMenuTriggerFor]="helpMenu">
+          <mat-icon>help_outline</mat-icon>
+        </button>
+      </mat-card-title>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="User" formControlName="user">
+        <mat-error *ngIf="loginForm.get('user').hasError('required')">User is <strong>required</strong></mat-error>
+        <mat-error *ngIf="loginForm.get('user').hasError('restful')">{{loginForm.get('user').getError('restful')}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Password" formControlName="password"
+               [type]="visible ? 'text': 'password'">
+        <button type="button" mat-icon-button matSuffix (click)="visible = !visible">
+          <mat-icon>visibility_{{visible ? 'off': ''}}</mat-icon>
+        </button>
+        <mat-error *ngIf="loginForm.get('password').hasError('required')">User is <strong>required</strong></mat-error>
+        <mat-error *ngIf="loginForm.get('password').hasError('restful')">
+          {{loginForm.get('password').getError('restful')}}
+        </mat-error>
+      </mat-form-field>
+      <div class="display-flex justify-content-flex-end">
+        <button mat-raised-button color="primary">Next</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<mat-menu #helpMenu xPosition="before">
+  <button mat-menu-item (click)="goRegister()">Open new an account?</button>
+  <button mat-menu-item (click)="goReset()">Did you forget your password?</button>
+</mat-menu>

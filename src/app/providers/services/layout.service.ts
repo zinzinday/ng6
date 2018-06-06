@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {MatSnackBar} from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class LayoutService {
     Web: boolean, WebLandscape: boolean, WebPortrait: boolean,
   };
 
-  constructor(private router: Router, private breakpoint: BreakpointObserver) {
+  constructor(private snackBar: MatSnackBar,
+              private router: Router,
+              private breakpoint: BreakpointObserver) {
     this.observe();
   }
 
@@ -74,7 +77,12 @@ export class LayoutService {
     return this.is.Tablet || this.is.TabletLandscape || this.is.TabletPortrait;
   }
 
-  get isHandset(): boolean{
+  get isHandset(): boolean {
     return this.is.Handset || this.is.HandsetLandscape || this.is.HandsetPortrait;
   }
+
+  alert(message, action: string = 'Dismiss', duration: number = 3000) {
+    this.snackBar.open(message, action, {duration: duration});
+  }
+
 }
